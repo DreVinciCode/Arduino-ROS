@@ -36,7 +36,7 @@ static const char SETIO[] = "ur_msgs/SetIO";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -66,7 +66,7 @@ static const char SETIO[] = "ur_msgs/SetIO";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -99,8 +99,8 @@ static const char SETIO[] = "ur_msgs/SetIO";
      return offset;
     }
 
-    const char * getType(){ return SETIO; };
-    const char * getMD5(){ return "85200c86fbe60ea3e047bae3d6574bfd"; };
+    virtual const char * getType() override { return SETIO; };
+    virtual const char * getMD5() override { return "85200c86fbe60ea3e047bae3d6574bfd"; };
 
   };
 
@@ -115,7 +115,7 @@ static const char SETIO[] = "ur_msgs/SetIO";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -128,7 +128,7 @@ static const char SETIO[] = "ur_msgs/SetIO";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -142,8 +142,8 @@ static const char SETIO[] = "ur_msgs/SetIO";
      return offset;
     }
 
-    const char * getType(){ return SETIO; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType() override { return SETIO; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

@@ -22,7 +22,7 @@ static const char SETDRIVEPOWER[] = "industrial_msgs/SetDrivePower";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -35,7 +35,7 @@ static const char SETDRIVEPOWER[] = "industrial_msgs/SetDrivePower";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -49,8 +49,8 @@ static const char SETDRIVEPOWER[] = "industrial_msgs/SetDrivePower";
      return offset;
     }
 
-    const char * getType(){ return SETDRIVEPOWER; };
-    const char * getMD5(){ return "ad0065fa1febb42851b8c0a0493a1234"; };
+    virtual const char * getType() override { return SETDRIVEPOWER; };
+    virtual const char * getMD5() override { return "ad0065fa1febb42851b8c0a0493a1234"; };
 
   };
 
@@ -65,22 +65,22 @@ static const char SETDRIVEPOWER[] = "industrial_msgs/SetDrivePower";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->code.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->code.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return SETDRIVEPOWER; };
-    const char * getMD5(){ return "50b1f38f75f5677e5692f3b3e7e1ea48"; };
+    virtual const char * getType() override { return SETDRIVEPOWER; };
+    virtual const char * getMD5() override { return "50b1f38f75f5677e5692f3b3e7e1ea48"; };
 
   };
 

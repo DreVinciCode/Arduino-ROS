@@ -23,7 +23,7 @@ namespace industrial_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -36,7 +36,7 @@ namespace industrial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -50,8 +50,8 @@ namespace industrial_msgs
      return offset;
     }
 
-    const char * getType(){ return "industrial_msgs/RobotMode"; };
-    const char * getMD5(){ return "24ac279e988b6b3db836e437e6ed1ba0"; };
+    virtual const char * getType() override { return "industrial_msgs/RobotMode"; };
+    virtual const char * getMD5() override { return "24ac279e988b6b3db836e437e6ed1ba0"; };
 
   };
 

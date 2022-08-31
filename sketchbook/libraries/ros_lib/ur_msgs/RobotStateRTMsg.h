@@ -81,28 +81,28 @@ namespace ur_msgs
 
     RobotStateRTMsg():
       time(0),
-      q_target_length(0), q_target(NULL),
-      qd_target_length(0), qd_target(NULL),
-      qdd_target_length(0), qdd_target(NULL),
-      i_target_length(0), i_target(NULL),
-      m_target_length(0), m_target(NULL),
-      q_actual_length(0), q_actual(NULL),
-      qd_actual_length(0), qd_actual(NULL),
-      i_actual_length(0), i_actual(NULL),
-      tool_acc_values_length(0), tool_acc_values(NULL),
-      tcp_force_length(0), tcp_force(NULL),
-      tool_vector_length(0), tool_vector(NULL),
-      tcp_speed_length(0), tcp_speed(NULL),
+      q_target_length(0), st_q_target(), q_target(nullptr),
+      qd_target_length(0), st_qd_target(), qd_target(nullptr),
+      qdd_target_length(0), st_qdd_target(), qdd_target(nullptr),
+      i_target_length(0), st_i_target(), i_target(nullptr),
+      m_target_length(0), st_m_target(), m_target(nullptr),
+      q_actual_length(0), st_q_actual(), q_actual(nullptr),
+      qd_actual_length(0), st_qd_actual(), qd_actual(nullptr),
+      i_actual_length(0), st_i_actual(), i_actual(nullptr),
+      tool_acc_values_length(0), st_tool_acc_values(), tool_acc_values(nullptr),
+      tcp_force_length(0), st_tcp_force(), tcp_force(nullptr),
+      tool_vector_length(0), st_tool_vector(), tool_vector(nullptr),
+      tcp_speed_length(0), st_tcp_speed(), tcp_speed(nullptr),
       digital_input_bits(0),
-      motor_temperatures_length(0), motor_temperatures(NULL),
+      motor_temperatures_length(0), st_motor_temperatures(), motor_temperatures(nullptr),
       controller_timer(0),
       test_value(0),
       robot_mode(0),
-      joint_modes_length(0), joint_modes(NULL)
+      joint_modes_length(0), st_joint_modes(), joint_modes(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += serializeAvrFloat64(outbuffer + offset, this->time);
@@ -225,7 +225,7 @@ namespace ur_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->time));
@@ -404,8 +404,8 @@ namespace ur_msgs
      return offset;
     }
 
-    const char * getType(){ return "ur_msgs/RobotStateRTMsg"; };
-    const char * getMD5(){ return "ce6feddd3ccb4ca7dbcd0ff105b603c7"; };
+    virtual const char * getType() override { return "ur_msgs/RobotStateRTMsg"; };
+    virtual const char * getMD5() override { return "ce6feddd3ccb4ca7dbcd0ff105b603c7"; };
 
   };
 

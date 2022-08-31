@@ -4,8 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "industrial_msgs/ServiceReturnCode.h"
 #include "industrial_msgs/DeviceInfo.h"
+#include "industrial_msgs/ServiceReturnCode.h"
 
 namespace industrial_msgs
 {
@@ -20,20 +20,20 @@ static const char GETROBOTINFO[] = "industrial_msgs/GetRobotInfo";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return GETROBOTINFO; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return GETROBOTINFO; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -51,12 +51,12 @@ static const char GETROBOTINFO[] = "industrial_msgs/GetRobotInfo";
 
     GetRobotInfoResponse():
       controller(),
-      robots_length(0), robots(NULL),
+      robots_length(0), st_robots(), robots(nullptr),
       code()
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->controller.serialize(outbuffer + offset);
@@ -72,7 +72,7 @@ static const char GETROBOTINFO[] = "industrial_msgs/GetRobotInfo";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->controller.deserialize(inbuffer + offset);
@@ -92,8 +92,8 @@ static const char GETROBOTINFO[] = "industrial_msgs/GetRobotInfo";
      return offset;
     }
 
-    const char * getType(){ return GETROBOTINFO; };
-    const char * getMD5(){ return "5db3230b3e61c85a320b999ffd7f3b3f"; };
+    virtual const char * getType() override { return GETROBOTINFO; };
+    virtual const char * getMD5() override { return "5db3230b3e61c85a320b999ffd7f3b3f"; };
 
   };
 

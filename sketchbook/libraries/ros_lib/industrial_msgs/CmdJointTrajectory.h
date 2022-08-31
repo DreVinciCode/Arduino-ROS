@@ -4,8 +4,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "trajectory_msgs/JointTrajectory.h"
 #include "industrial_msgs/ServiceReturnCode.h"
+#include "trajectory_msgs/JointTrajectory.h"
 
 namespace industrial_msgs
 {
@@ -23,22 +23,22 @@ static const char CMDJOINTTRAJECTORY[] = "industrial_msgs/CmdJointTrajectory";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->trajectory.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->trajectory.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return CMDJOINTTRAJECTORY; };
-    const char * getMD5(){ return "2a0eff76c870e8595636c2a562ca298e"; };
+    virtual const char * getType() override { return CMDJOINTTRAJECTORY; };
+    virtual const char * getMD5() override { return "2a0eff76c870e8595636c2a562ca298e"; };
 
   };
 
@@ -53,22 +53,22 @@ static const char CMDJOINTTRAJECTORY[] = "industrial_msgs/CmdJointTrajectory";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->code.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->code.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return CMDJOINTTRAJECTORY; };
-    const char * getMD5(){ return "50b1f38f75f5677e5692f3b3e7e1ea48"; };
+    virtual const char * getType() override { return CMDJOINTTRAJECTORY; };
+    virtual const char * getMD5() override { return "50b1f38f75f5677e5692f3b3e7e1ea48"; };
 
   };
 

@@ -23,7 +23,7 @@ namespace ur_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->pin >> (8 * 0)) & 0xFF;
@@ -38,7 +38,7 @@ namespace ur_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->pin =  ((uint8_t) (*(inbuffer + offset)));
@@ -54,8 +54,8 @@ namespace ur_msgs
      return offset;
     }
 
-    const char * getType(){ return "ur_msgs/Digital"; };
-    const char * getMD5(){ return "83707be3fa18d2ffe57381ea034aa262"; };
+    virtual const char * getType() override { return "ur_msgs/Digital"; };
+    virtual const char * getMD5() override { return "83707be3fa18d2ffe57381ea034aa262"; };
 
   };
 

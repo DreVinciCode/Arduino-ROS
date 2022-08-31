@@ -31,7 +31,7 @@ namespace industrial_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -44,7 +44,7 @@ namespace industrial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -58,8 +58,8 @@ namespace industrial_msgs
      return offset;
     }
 
-    const char * getType(){ return "industrial_msgs/TriState"; };
-    const char * getMD5(){ return "deb03829f3c2d0f1b647fa38d7087952"; };
+    virtual const char * getType() override { return "industrial_msgs/TriState"; };
+    virtual const char * getMD5() override { return "deb03829f3c2d0f1b647fa38d7087952"; };
 
   };
 

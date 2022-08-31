@@ -26,7 +26,7 @@ namespace industrial_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->val >> (8 * 0)) & 0xFF;
@@ -34,7 +34,7 @@ namespace industrial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->val =  ((uint8_t) (*(inbuffer + offset)));
@@ -42,8 +42,8 @@ namespace industrial_msgs
      return offset;
     }
 
-    const char * getType(){ return "industrial_msgs/DebugLevel"; };
-    const char * getMD5(){ return "5bfde194fd95d83abdb02a03ee48fbe7"; };
+    virtual const char * getType() override { return "industrial_msgs/DebugLevel"; };
+    virtual const char * getMD5() override { return "5bfde194fd95d83abdb02a03ee48fbe7"; };
 
   };
 

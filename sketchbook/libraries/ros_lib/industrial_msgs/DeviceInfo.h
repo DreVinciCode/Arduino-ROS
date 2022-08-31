@@ -32,7 +32,7 @@ namespace industrial_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_model = strlen(this->model);
@@ -63,7 +63,7 @@ namespace industrial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_model;
@@ -114,8 +114,8 @@ namespace industrial_msgs
      return offset;
     }
 
-    const char * getType(){ return "industrial_msgs/DeviceInfo"; };
-    const char * getMD5(){ return "373ed7fa0fac92d443be9cd5198e80f0"; };
+    virtual const char * getType() override { return "industrial_msgs/DeviceInfo"; };
+    virtual const char * getMD5() override { return "373ed7fa0fac92d443be9cd5198e80f0"; };
 
   };
 

@@ -28,12 +28,12 @@ namespace graph_msgs
 
     GeometryGraph():
       header(),
-      nodes_length(0), nodes(NULL),
-      edges_length(0), edges(NULL)
+      nodes_length(0), st_nodes(), nodes(nullptr),
+      edges_length(0), st_edges(), edges(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -56,7 +56,7 @@ namespace graph_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -87,8 +87,8 @@ namespace graph_msgs
      return offset;
     }
 
-    const char * getType(){ return "graph_msgs/GeometryGraph"; };
-    const char * getMD5(){ return "78739617daca94d38915923795eada2d"; };
+    virtual const char * getType() override { return "graph_msgs/GeometryGraph"; };
+    virtual const char * getMD5() override { return "78739617daca94d38915923795eada2d"; };
 
   };
 

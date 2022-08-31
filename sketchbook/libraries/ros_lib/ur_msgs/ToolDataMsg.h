@@ -49,7 +49,7 @@ namespace ur_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -105,7 +105,7 @@ namespace ur_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -166,8 +166,8 @@ namespace ur_msgs
      return offset;
     }
 
-    const char * getType(){ return "ur_msgs/ToolDataMsg"; };
-    const char * getMD5(){ return "404fc266f37d89f75b372d12fa94a122"; };
+    virtual const char * getType() override { return "ur_msgs/ToolDataMsg"; };
+    virtual const char * getMD5() override { return "404fc266f37d89f75b372d12fa94a122"; };
 
   };
 

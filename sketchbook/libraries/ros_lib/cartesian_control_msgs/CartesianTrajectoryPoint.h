@@ -40,7 +40,7 @@ namespace cartesian_control_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->time_from_start.sec >> (8 * 0)) & 0xFF;
@@ -61,7 +61,7 @@ namespace cartesian_control_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->time_from_start.sec =  ((uint32_t) (*(inbuffer + offset)));
@@ -82,8 +82,8 @@ namespace cartesian_control_msgs
      return offset;
     }
 
-    const char * getType(){ return "cartesian_control_msgs/CartesianTrajectoryPoint"; };
-    const char * getMD5(){ return "02d556067c148166af2dabae6251c00f"; };
+    virtual const char * getType() override { return "cartesian_control_msgs/CartesianTrajectoryPoint"; };
+    virtual const char * getMD5() override { return "02d556067c148166af2dabae6251c00f"; };
 
   };
 

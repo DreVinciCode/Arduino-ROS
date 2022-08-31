@@ -25,12 +25,12 @@ namespace cartesian_control_msgs
 
     CartesianTrajectory():
       header(),
-      points_length(0), points(NULL),
+      points_length(0), st_points(), points(nullptr),
       controlled_frame("")
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -50,7 +50,7 @@ namespace cartesian_control_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -78,8 +78,8 @@ namespace cartesian_control_msgs
      return offset;
     }
 
-    const char * getType(){ return "cartesian_control_msgs/CartesianTrajectory"; };
-    const char * getMD5(){ return "fe1b5791fdbc25aca5939664297d26be"; };
+    virtual const char * getType() override { return "cartesian_control_msgs/CartesianTrajectory"; };
+    virtual const char * getMD5() override { return "fe1b5791fdbc25aca5939664297d26be"; };
 
   };
 

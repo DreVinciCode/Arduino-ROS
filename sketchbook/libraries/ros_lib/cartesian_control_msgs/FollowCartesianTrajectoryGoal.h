@@ -32,7 +32,7 @@ namespace cartesian_control_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->trajectory.serialize(outbuffer + offset);
@@ -51,7 +51,7 @@ namespace cartesian_control_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->trajectory.deserialize(inbuffer + offset);
@@ -70,8 +70,8 @@ namespace cartesian_control_msgs
      return offset;
     }
 
-    const char * getType(){ return "cartesian_control_msgs/FollowCartesianTrajectoryGoal"; };
-    const char * getMD5(){ return "53c6564a309cf1d1f2d2c4e0478a40b3"; };
+    virtual const char * getType() override { return "cartesian_control_msgs/FollowCartesianTrajectoryGoal"; };
+    virtual const char * getMD5() override { return "53c6564a309cf1d1f2d2c4e0478a40b3"; };
 
   };
 

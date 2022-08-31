@@ -25,7 +25,7 @@ static const char SETPAYLOAD[] = "ur_msgs/SetPayload";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -42,7 +42,7 @@ static const char SETPAYLOAD[] = "ur_msgs/SetPayload";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -60,8 +60,8 @@ static const char SETPAYLOAD[] = "ur_msgs/SetPayload";
      return offset;
     }
 
-    const char * getType(){ return SETPAYLOAD; };
-    const char * getMD5(){ return "6a2cd594b640cc49946d268b22a837bd"; };
+    virtual const char * getType() override { return SETPAYLOAD; };
+    virtual const char * getMD5() override { return "d12269f931817591aa52047629ca66ca"; };
 
   };
 
@@ -76,7 +76,7 @@ static const char SETPAYLOAD[] = "ur_msgs/SetPayload";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -89,7 +89,7 @@ static const char SETPAYLOAD[] = "ur_msgs/SetPayload";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -103,8 +103,8 @@ static const char SETPAYLOAD[] = "ur_msgs/SetPayload";
      return offset;
     }
 
-    const char * getType(){ return SETPAYLOAD; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType() override { return SETPAYLOAD; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

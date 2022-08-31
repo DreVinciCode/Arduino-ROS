@@ -32,7 +32,7 @@ namespace cartesian_control_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->position_error.serialize(outbuffer + offset);
@@ -42,7 +42,7 @@ namespace cartesian_control_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->position_error.deserialize(inbuffer + offset);
@@ -52,8 +52,8 @@ namespace cartesian_control_msgs
      return offset;
     }
 
-    const char * getType(){ return "cartesian_control_msgs/CartesianTolerance"; };
-    const char * getMD5(){ return "af7b81a920293904e6a5480495adb8d1"; };
+    virtual const char * getType() override { return "cartesian_control_msgs/CartesianTolerance"; };
+    virtual const char * getMD5() override { return "af7b81a920293904e6a5480495adb8d1"; };
 
   };
 

@@ -4,12 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "std_msgs/Header.h"
 #include "moveit_msgs/RobotTrajectory.h"
-#include "moveit_msgs/RobotState.h"
-#include "moveit_msgs/MoveItErrorCodes.h"
-#include "geometry_msgs/Pose.h"
 #include "moveit_msgs/Constraints.h"
+#include "moveit_msgs/MoveItErrorCodes.h"
+#include "moveit_msgs/RobotState.h"
+#include "std_msgs/Header.h"
+#include "geometry_msgs/Pose.h"
 
 namespace moveit_msgs
 {
@@ -35,25 +35,37 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
       _max_step_type max_step;
       typedef float _jump_threshold_type;
       _jump_threshold_type jump_threshold;
+      typedef float _prismatic_jump_threshold_type;
+      _prismatic_jump_threshold_type prismatic_jump_threshold;
+      typedef float _revolute_jump_threshold_type;
+      _revolute_jump_threshold_type revolute_jump_threshold;
       typedef bool _avoid_collisions_type;
       _avoid_collisions_type avoid_collisions;
       typedef moveit_msgs::Constraints _path_constraints_type;
       _path_constraints_type path_constraints;
+      typedef const char* _cartesian_speed_end_effector_link_type;
+      _cartesian_speed_end_effector_link_type cartesian_speed_end_effector_link;
+      typedef float _max_cartesian_speed_type;
+      _max_cartesian_speed_type max_cartesian_speed;
 
     GetCartesianPathRequest():
       header(),
       start_state(),
       group_name(""),
       link_name(""),
-      waypoints_length(0), waypoints(NULL),
+      waypoints_length(0), st_waypoints(), waypoints(nullptr),
       max_step(0),
       jump_threshold(0),
+      prismatic_jump_threshold(0),
+      revolute_jump_threshold(0),
       avoid_collisions(0),
-      path_constraints()
+      path_constraints(),
+      cartesian_speed_end_effector_link(""),
+      max_cartesian_speed(0)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -78,6 +90,8 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
       }
       offset += serializeAvrFloat64(outbuffer + offset, this->max_step);
       offset += serializeAvrFloat64(outbuffer + offset, this->jump_threshold);
+      offset += serializeAvrFloat64(outbuffer + offset, this->prismatic_jump_threshold);
+      offset += serializeAvrFloat64(outbuffer + offset, this->revolute_jump_threshold);
       union {
         bool real;
         uint8_t base;
@@ -86,10 +100,16 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
       *(outbuffer + offset + 0) = (u_avoid_collisions.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->avoid_collisions);
       offset += this->path_constraints.serialize(outbuffer + offset);
+      uint32_t length_cartesian_speed_end_effector_link = strlen(this->cartesian_speed_end_effector_link);
+      varToArr(outbuffer + offset, length_cartesian_speed_end_effector_link);
+      offset += 4;
+      memcpy(outbuffer + offset, this->cartesian_speed_end_effector_link, length_cartesian_speed_end_effector_link);
+      offset += length_cartesian_speed_end_effector_link;
+      offset += serializeAvrFloat64(outbuffer + offset, this->max_cartesian_speed);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -126,6 +146,8 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
       }
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->max_step));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->jump_threshold));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->prismatic_jump_threshold));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->revolute_jump_threshold));
       union {
         bool real;
         uint8_t base;
@@ -135,11 +157,21 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
       this->avoid_collisions = u_avoid_collisions.real;
       offset += sizeof(this->avoid_collisions);
       offset += this->path_constraints.deserialize(inbuffer + offset);
+      uint32_t length_cartesian_speed_end_effector_link;
+      arrToVar(length_cartesian_speed_end_effector_link, (inbuffer + offset));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_cartesian_speed_end_effector_link; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_cartesian_speed_end_effector_link-1]=0;
+      this->cartesian_speed_end_effector_link = (char *)(inbuffer + offset-1);
+      offset += length_cartesian_speed_end_effector_link;
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->max_cartesian_speed));
      return offset;
     }
 
-    const char * getType(){ return GETCARTESIANPATH; };
-    const char * getMD5(){ return "b37c16ad7ed838d811a270a8054276b6"; };
+    virtual const char * getType() override { return GETCARTESIANPATH; };
+    virtual const char * getMD5() override { return "8174baea665a893e7f11a8af5022abab"; };
 
   };
 
@@ -163,7 +195,7 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->start_state.serialize(outbuffer + offset);
@@ -173,7 +205,7 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->start_state.deserialize(inbuffer + offset);
@@ -183,8 +215,8 @@ static const char GETCARTESIANPATH[] = "moveit_msgs/GetCartesianPath";
      return offset;
     }
 
-    const char * getType(){ return GETCARTESIANPATH; };
-    const char * getMD5(){ return "45414110461a45eb0e273e013924ce59"; };
+    virtual const char * getType() override { return GETCARTESIANPATH; };
+    virtual const char * getMD5() override { return "15ee95715c86802ada727b6361c6f4d2"; };
 
   };
 

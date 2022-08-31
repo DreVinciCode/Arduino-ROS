@@ -22,12 +22,12 @@ namespace cartesian_control_msgs
       _posture_joint_values_type * posture_joint_values;
 
     CartesianPosture():
-      posture_joint_names_length(0), posture_joint_names(NULL),
-      posture_joint_values_length(0), posture_joint_values(NULL)
+      posture_joint_names_length(0), st_posture_joint_names(), posture_joint_names(nullptr),
+      posture_joint_values_length(0), st_posture_joint_values(), posture_joint_values(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->posture_joint_names_length >> (8 * 0)) & 0xFF;
@@ -53,7 +53,7 @@ namespace cartesian_control_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t posture_joint_names_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -91,8 +91,8 @@ namespace cartesian_control_msgs
      return offset;
     }
 
-    const char * getType(){ return "cartesian_control_msgs/CartesianPosture"; };
-    const char * getMD5(){ return "fd61b7ee575c3e6d2dc191be6b741ff0"; };
+    virtual const char * getType() override { return "cartesian_control_msgs/CartesianPosture"; };
+    virtual const char * getMD5() override { return "fd61b7ee575c3e6d2dc191be6b741ff0"; };
 
   };
 

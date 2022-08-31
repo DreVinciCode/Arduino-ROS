@@ -22,12 +22,12 @@ namespace graph_msgs
       _weights_type * weights;
 
     Edges():
-      node_ids_length(0), node_ids(NULL),
-      weights_length(0), weights(NULL)
+      node_ids_length(0), st_node_ids(), node_ids(nullptr),
+      weights_length(0), st_weights(), weights(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->node_ids_length >> (8 * 0)) & 0xFF;
@@ -53,7 +53,7 @@ namespace graph_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t node_ids_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -87,8 +87,8 @@ namespace graph_msgs
      return offset;
     }
 
-    const char * getType(){ return "graph_msgs/Edges"; };
-    const char * getMD5(){ return "1dcd54afd0b0c0fbebeb59dbdda4c026"; };
+    virtual const char * getType() override { return "graph_msgs/Edges"; };
+    virtual const char * getMD5() override { return "1dcd54afd0b0c0fbebeb59dbdda4c026"; };
 
   };
 

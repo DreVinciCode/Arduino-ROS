@@ -36,15 +36,15 @@ namespace ur_msgs
       _analog_out_states_type * analog_out_states;
 
     IOStates():
-      digital_in_states_length(0), digital_in_states(NULL),
-      digital_out_states_length(0), digital_out_states(NULL),
-      flag_states_length(0), flag_states(NULL),
-      analog_in_states_length(0), analog_in_states(NULL),
-      analog_out_states_length(0), analog_out_states(NULL)
+      digital_in_states_length(0), st_digital_in_states(), digital_in_states(nullptr),
+      digital_out_states_length(0), st_digital_out_states(), digital_out_states(nullptr),
+      flag_states_length(0), st_flag_states(), flag_states(nullptr),
+      analog_in_states_length(0), st_analog_in_states(), analog_in_states(nullptr),
+      analog_out_states_length(0), st_analog_out_states(), analog_out_states(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->digital_in_states_length >> (8 * 0)) & 0xFF;
@@ -90,7 +90,7 @@ namespace ur_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t digital_in_states_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -156,8 +156,8 @@ namespace ur_msgs
      return offset;
     }
 
-    const char * getType(){ return "ur_msgs/IOStates"; };
-    const char * getMD5(){ return "b341cc0bc3ea976e9cacf81c26adeb88"; };
+    virtual const char * getType() override { return "ur_msgs/IOStates"; };
+    virtual const char * getMD5() override { return "3033784e7041da89491b97cc4c1105b5"; };
 
   };
 

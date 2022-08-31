@@ -21,22 +21,22 @@ static const char SETSPEEDSLIDERFRACTION[] = "ur_msgs/SetSpeedSliderFraction";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += serializeAvrFloat64(outbuffer + offset, this->speed_slider_fraction);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->speed_slider_fraction));
      return offset;
     }
 
-    const char * getType(){ return SETSPEEDSLIDERFRACTION; };
-    const char * getMD5(){ return "64134244ab4dfc72a3406fe06d580274"; };
+    virtual const char * getType() override { return SETSPEEDSLIDERFRACTION; };
+    virtual const char * getMD5() override { return "64134244ab4dfc72a3406fe06d580274"; };
 
   };
 
@@ -51,7 +51,7 @@ static const char SETSPEEDSLIDERFRACTION[] = "ur_msgs/SetSpeedSliderFraction";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -64,7 +64,7 @@ static const char SETSPEEDSLIDERFRACTION[] = "ur_msgs/SetSpeedSliderFraction";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -78,8 +78,8 @@ static const char SETSPEEDSLIDERFRACTION[] = "ur_msgs/SetSpeedSliderFraction";
      return offset;
     }
 
-    const char * getType(){ return SETSPEEDSLIDERFRACTION; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType() override { return SETSPEEDSLIDERFRACTION; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 
