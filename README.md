@@ -3,7 +3,7 @@
 I created this package to run my arduino led_strip color patterns on the nano when connected to the RaspPi 4 running Ubuntu 20 server. 
 
 ```
-ssh ubuntu@10.5.0.111
+ssh ubuntu@<ip address>
 ```
 Enter Password, then run: 
 ```
