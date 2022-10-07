@@ -4,5 +4,7 @@
 	<param name="port" value="/dev/ttyUSB0"/> <!--This value may be different for other machines -->
   </node> 
 
-
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+	
+	
 </launch>
