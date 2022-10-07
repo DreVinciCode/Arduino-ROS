@@ -25,3 +25,12 @@ As well as setting the baud rate for the usb port on the RaspPi, Ex: setting to 
 ```
 sudo stty -F /dev/ttyS0 115200
 ```
+
+In case of permissions for ttyUSB0
+```
+sudo su
+//type your password
+cd /
+cd dev
+chown username ttyUSB0
+```
